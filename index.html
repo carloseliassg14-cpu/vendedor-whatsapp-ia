@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carlos Salas | Vendedor de WhatsApp con IA para tiendas de ropa</title>
+<meta name="description" content="Un asistente de WhatsApp con inteligencia artificial para tiendas de ropa en Costa Rica: responde en minutos, da seguimiento y lleva la conversación hasta el pago.">
+<meta name="theme-color" content="#0D1B2A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CR">
+<meta property="og:title" content="Vendedor de WhatsApp con IA para tiendas de ropa | Carlos Salas">
+<meta property="og:description" content="Su tienda vende hasta cuando usted duerme. Un asistente que contesta en minutos, da seguimiento y lleva la conversación hasta el pago.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%230D1B2A'/%3E%3Ctext x='18' y='75' font-family='Georgia,serif' font-size='84' fill='none' stroke='%23fff' stroke-width='3'%3EC%3C/text%3E%3Ctext x='45' y='65' font-family='Georgia,serif' font-size='44' fill='%23fff' font-weight='700'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Cormorant+Garamond:wght@500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0D1B2A;
+    --ink-2:#15263A;
+    --porcelain:#F2F4F7;
+    --mist:#D7DEE7;
+    --cobalt:#2F5BFF;
+    --cobalt-2:#2449D6;
+    --steel:#5D6B7B;
+    --white:#FFFFFF;
+    --display:"Syne", "Helvetica Neue", Arial, sans-serif;
+    --text:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--text);color:var(--ink);background:var(--porcelain);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img,svg{display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.02}
+  h2{font-size:clamp(2rem,4.6vw,3.4rem);max-width:16ch}
+  p{max-width:62ch}
+  :focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:6px}
+
+  .btn{display:inline-flex;align-items:center;gap:12px;background:var(--cobalt);color:var(--white);text-decoration:none;font-weight:600;font-size:1rem;padding:16px 26px;border-radius:14px;transition:background .2s}
+  .btn:hover{background:var(--cobalt-2)}
+  .btn svg{width:20px;height:20px;fill:currentColor;flex:none}
+  .link{font-weight:600;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
+
+  /* Top bar */
+  .top{position:absolute;inset:0 0 auto 0;z-index:5}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+  .mark{display:flex;align-items:center;gap:12px;color:var(--white);text-decoration:none}
+  .mark .logo{width:42px;height:42px;flex:none}
+  .mark b{font-weight:600}
+  .top .link{color:var(--white);font-size:.95rem}
+
+  /* Hero */
+  .hero{background:var(--ink);color:var(--white);padding:150px 0 0;overflow:hidden;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:end}
+  @media(min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr}}
+  .hero h1{font-size:clamp(2.5rem,5.4vw,4.6rem);font-weight:700;line-height:1;letter-spacing:-.03em;max-width:13ch}
+  .hero .lead{margin-top:28px;font-size:1.2rem;color:#C2CCD8;max-width:40ch}
+  .hero .actions{margin-top:38px;display:flex;flex-wrap:wrap;align-items:center;gap:26px;padding-bottom:96px}
+  .hero .actions .link{color:#C2CCD8}
+
+  /* Phone */
+  /* iPhone frame */
+  .hero-grid{align-items:center}
+  .hero .actions{padding-bottom:0}
+  .hero{padding-bottom:110px !important}
+  .phone{justify-self:center;position:relative;width:min(330px,100%);aspect-ratio:9/19.3;border-radius:56px;padding:11px;
+    background:linear-gradient(145deg,#8E8C93 0%,#3B3A40 18%,#2A292E 50%,#55545A 82%,#9A989F 100%);
+    box-shadow:0 0 0 1.5px #1C1B20 inset,0 40px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06)}
+  .phone::before,.phone::after{content:"";position:absolute;width:4px;border-radius:2px;background:#4A4950}
+  .phone::before{left:-3px;top:150px;height:58px;box-shadow:0 74px 0 #4A4950}
+  .phone::after{right:-3px;top:190px;height:86px}
+  .screen{position:relative;height:100%;border-radius:46px;overflow:hidden;background:#EFEAE2;display:flex;flex-direction:column;
+    font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color:#111B21}
+  .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:104px;height:31px;border-radius:20px;background:#000;z-index:3}
+  .status{display:flex;justify-content:space-between;align-items:center;padding:16px 28px 0 32px;height:50px;font-size:.86rem;font-weight:600;background:#F6F6F6}
+  .status .icons{display:flex;gap:5px;align-items:center}
+  .status svg{height:11px;width:auto;fill:#111B21}
+  .chat-head{background:#F6F6F6;padding:6px 12px 9px;display:flex;align-items:center;gap:9px;border-bottom:.5px solid #D1D1D6}
+  .chat-head .back{width:11px;height:19px;flex:none}
+  .avatar{width:34px;height:34px;border-radius:50%;background:#111B21;color:#fff;display:grid;place-items:center;font-size:.72rem;font-weight:700;flex:none}
+  .chat-head .who{flex:1;min-width:0}
+  .chat-head b{display:block;font-size:.93rem;font-weight:600;line-height:1.15}
+  .chat-head small{font-size:.74rem;color:#667781}
+  .chat-head .act{display:flex;gap:18px;color:#007AFF}
+  .chat-head .act svg{width:22px;height:22px;fill:none;stroke:#007AFF;stroke-width:1.7}
+  .thread{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:5px;font-size:.86rem;line-height:1.32;
+    background-color:#EFEAE2;background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:14px 14px}
+  .day{align-self:center;font-size:.7rem;color:#54656F;background:#FFFFFFE6;padding:3px 9px;border-radius:7px;margin-bottom:5px;box-shadow:0 1px .5px rgba(0,0,0,.1)}
+  .b{max-width:80%;padding:6px 8px 4px 9px;border-radius:9px;box-shadow:0 1px .5px rgba(0,0,0,.13);position:relative}
+  .b time{float:right;margin:6px 0 -3px 10px;font-size:.64rem;color:#667781}
+  .b.out time::after{content:" ✓✓";color:#53BDEB;letter-spacing:-2px}
+  .b.in{background:#FFFFFF;align-self:flex-start;border-top-left-radius:2px}
+  .b.out{background:#D9FDD3;align-self:flex-end;border-top-right-radius:2px}
+  .compose{background:#F6F6F6;padding:7px 10px 26px;display:flex;align-items:center;gap:10px;border-top:.5px solid #D1D1D6}
+  .compose .plus{font-size:1.5rem;color:#007AFF;line-height:1}
+  .compose .field{flex:1;height:32px;border-radius:17px;background:#fff;border:.5px solid #D1D1D6}
+  .compose svg{width:20px;height:20px;fill:none;stroke:#007AFF;stroke-width:1.7}
+  .home{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:120px;height:4.5px;border-radius:3px;background:#111B21}
+  .b.typing{background:#D9FDD3;align-self:flex-end;display:flex;gap:4px;padding:12px 14px}
+  .b.typing i{width:6px;height:6px;border-radius:50%;background:var(--ink);opacity:.4;animation:dot 1s infinite}
+  .b.typing i:nth-child(2){animation-delay:.15s}.b.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes dot{50%{opacity:1}}
+  .thread .b{opacity:0;transform:translateY(8px);animation:pop .35s ease forwards}
+  @keyframes pop{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    .thread .b{animation:none;opacity:1;transform:none}
+    .b.typing{display:none}
+  }
+
+  /* Sections */
+  section{padding:120px 0}
+  .intro{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:56px}
+  @media(min-width:880px){.intro{grid-template-columns:1fr 1fr;align-items:end}}
+  .intro p{color:var(--steel);font-size:1.1rem}
+
+  /* Problem */
+  .bubbles{display:flex;flex-direction:column;gap:18px}
+  .bubbles .q{background:var(--white);border-radius:22px 22px 22px 6px;padding:22px 26px;font-family:var(--display);font-weight:600;font-size:clamp(1.15rem,2.2vw,1.55rem);line-height:1.25;max-width:720px}
+  .bubbles .q:nth-child(2){margin-left:auto;margin-right:0}
+  @media(min-width:880px){.bubbles .q:nth-child(2){margin-left:12%}.bubbles .q:nth-child(3){margin-left:24%}}
+  .verdict{margin-top:64px;font-size:clamp(1.25rem,2.4vw,1.6rem);line-height:1.4;max-width:30ch;font-weight:500}
+  .verdict strong{font-weight:600;text-decoration:underline;text-decoration-color:var(--cobalt);text-decoration-thickness:3px;text-underline-offset:6px}
+
+  /* For whom */
+  .fit{background:var(--white)}
+  .fit-grid{display:grid;grid-template-columns:1fr;gap:56px}
+  @media(min-width:880px){.fit-grid{grid-template-columns:1fr 1fr}}
+  .ticks{list-style:none;display:grid;gap:0;border-top:1px solid var(--mist)}
+  .ticks li{padding:20px 0 20px 40px;border-bottom:1px solid var(--mist);position:relative}
+  .ticks li::before{content:"";position:absolute;left:0;top:24px;width:22px;height:22px;border-radius:50%;background:var(--cobalt) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"><path d="M9.3 14.6 5.9 11.2l1.3-1.3 2.1 2.1 5.4-5.4 1.3 1.3z" fill="white"/></svg>') center/100% no-repeat}
+  .not{margin-top:28px;color:var(--steel);font-size:1rem}
+
+  /* Services: price list */
+  .menu{border-top:2px solid var(--ink)}
+  .item{display:grid;grid-template-columns:1fr;gap:10px;padding:34px 0;border-bottom:1px solid var(--mist)}
+  @media(min-width:880px){.item{grid-template-columns:1.1fr 1.6fr .8fr;gap:40px;align-items:baseline}}
+  .item h3{font-size:1.7rem}
+  .item p{color:var(--steel);font-size:1.02rem}
+  .price{font-family:var(--display);font-weight:700;font-size:1.6rem;white-space:nowrap}
+  @media(min-width:880px){.price{text-align:right}}
+  .price small{display:block;font-family:var(--text);font-weight:500;font-size:.88rem;color:var(--steel);letter-spacing:0}
+  .item.main h3::after{content:"El centro de todo";display:inline-block;margin-left:12px;vertical-align:middle;font-family:var(--text);font-size:.78rem;font-weight:600;letter-spacing:0;background:var(--ink);color:var(--white);padding:4px 10px;border-radius:999px;transform:translateY(-3px)}
+  .bonus{margin-top:26px;color:var(--steel);font-size:1rem}
+
+  /* Method */
+  .method{background:var(--ink);color:var(--white)}
+  .method .intro p{color:#C2CCD8}
+  .steps{list-style:none;display:grid;grid-template-columns:1fr;gap:40px;counter-reset:s}
+  @media(min-width:880px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .steps li{counter-increment:s;border-top:1px solid rgba(255,255,255,.2);padding-top:22px}
+  .steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:3.4rem;line-height:1;color:#FFFFFF;display:block;margin-bottom:18px}
+  .steps h3{font-size:1.35rem;margin-bottom:8px}
+  .steps p{color:#C2CCD8;font-size:1rem}
+  .steps .when{display:block;margin-top:14px;font-size:.9rem;color:var(--white);font-weight:600}
+
+  /* Pilot */
+  .pilot{background:var(--white)}
+  .pilot .intro p{color:var(--steel)}
+  .meters{display:grid;grid-template-columns:1fr;gap:20px}
+  @media(min-width:880px){.meters{grid-template-columns:repeat(3,1fr)}}
+  .meter{background:var(--porcelain);border-radius:20px;padding:26px}
+  .meter .v{font-family:var(--display);font-weight:800;font-size:2.8rem;line-height:1;color:rgba(13,27,42,.25)}
+  .meter b{display:block;margin-top:16px;font-size:1.05rem}
+  .meter span{display:block;color:var(--steel);font-size:.95rem;margin-top:4px}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:start}
+  @media(min-width:880px){.about-grid{grid-template-columns:.8fr 1.2fr}}
+  .badge .logo{width:150px;height:150px}
+  .about h2{margin:28px 0 0}
+  .facts{list-style:none;display:grid;gap:22px}
+  .facts li{font-size:1.08rem;padding-left:22px;border-left:3px solid var(--cobalt)}
+  .facts li span{display:block;color:var(--steel);font-size:.98rem}
+
+  /* CTA */
+  .cta{background:var(--ink);color:var(--white);padding:130px 0 120px}
+  .cta h2{font-size:clamp(2.2rem,4.8vw,3.9rem);max-width:15ch;font-weight:700;letter-spacing:-.03em}
+  .cta p{margin-top:26px;color:#C2CCD8;font-size:1.15rem;max-width:44ch}
+  .cta .btn{margin-top:40px;font-size:1.05rem;padding:18px 30px}
+  .cta .direct{margin-top:22px;color:#93A1B2;font-size:.95rem}
+  footer{background:var(--ink);color:#8796A8;font-size:.88rem;border-top:1px solid rgba(255,255,255,.1)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:26px;padding-bottom:26px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#">
+      <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Carlos Salas"><circle cx="50" cy="50" r="49" fill="#0D1B2A"/><circle cx="50" cy="50" r="48.4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1"/><g font-family="Cormorant Garamond, Georgia, serif" font-weight="500"><text x="18" y="75" font-size="84" fill="none" stroke="#fff" stroke-width="2.2">C</text><text x="45" y="65" font-size="44" fill="#fff" font-weight="600">S</text></g></svg>
+      <span><b>Carlos Salas</b></span>
+    </a>
+    <a class="link wa" href="#contacto">Escríbame</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-label="Presentación" style="padding-bottom:0">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Su tienda vende hasta cuando usted duerme.</h1>
+      <p class="lead">Un vendedor de WhatsApp con inteligencia artificial para tiendas de ropa en Costa Rica. Contesta en minutos, da seguimiento a quien no compró y lleva la conversación hasta el pago.</p>
+      <div class="actions">
+        <a class="btn wa" href="#contacto">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.2 13.2 0 0 1-5-4.5c-.4-.5-1-1.5-1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1 .9 1.9 1.2 2.2 1.3.3.2.5.1.6 0l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>
+          Agendar una llamada de 20 minutos
+        </a>
+        <a class="link" href="#servicios">Ver precios</a>
+      </div>
+    </div>
+
+    <div class="phone" aria-label="Ejemplo de una conversación de venta en el WhatsApp de una tienda, a las 11:42 de la noche">
+      <div class="screen" aria-hidden="true">
+        <div class="island"></div>
+        <div class="status">
+          <span>11:44</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 11"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="6" rx="1"/><rect x="10" y="2.5" width="3" height="8.5" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg>
+            <svg viewBox="0 0 16 11"><path d="M8 2.3c2.3 0 4.4.9 6 2.4l1.2-1.2A10.2 10.2 0 0 0 8 .6 10.2 10.2 0 0 0 .8 3.5L2 4.7a8.5 8.5 0 0 1 6-2.4zm0 3.4c1.4 0 2.6.5 3.6 1.4l1.2-1.2A6.8 6.8 0 0 0 8 4a6.8 6.8 0 0 0-4.8 1.9l1.2 1.2c1-.9 2.2-1.4 3.6-1.4zm0 3.4c.5 0 .9.2 1.2.5L8 11 6.8 9.6c.3-.3.7-.5 1.2-.5z"/></svg>
+            <svg viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="#111B21" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="1.6"/><rect x="23.6" y="4" width="1.6" height="4" rx=".8" opacity=".4"/></svg>
+          </span>
+        </div>
+        <div class="chat-head">
+          <svg class="back" viewBox="0 0 11 19"><path d="M9.5 1.5 2 9.5l7.5 8" fill="none" stroke="#007AFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="avatar">MJ</span>
+          <div class="who"><b>María José</b><small>en línea</small></div>
+          <span class="act">
+            <svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="m15.5 10.5 6-3.5v10l-6-3.5"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M5.2 3.5h3.3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2 4.2 1.6v3.3a1.7 1.7 0 0 1-1.8 1.7A17 17 0 0 1 3.5 5.3a1.7 1.7 0 0 1 1.7-1.8z"/></svg>
+          </span>
+        </div>
+        <div class="thread">
+          <span class="day">Hoy</span>
+          <div class="b in" style="animation-delay:.4s">Hola, ¿tiene esta panta en talla M?<time>11:42 p.m.</time></div>
+          <div class="b out" style="animation-delay:1.3s">Hola, con gusto. Sí la tenemos en M. ¿En qué color la busca?<time>11:42 p.m.</time></div>
+          <div class="b in" style="animation-delay:2.3s">La negra. ¿Cuánto sale el envío a Heredia?<time>11:43 p.m.</time></div>
+          <div class="b out" style="animation-delay:3.3s">Por Correos le llega en 1 día hábil. Si gusta, se la aparto ya y le paso los datos para el SINPE.<time>11:43 p.m.</time></div>
+          <div class="b in" style="animation-delay:4.3s">Sí, apártemela 🙌<time>11:44 p.m.</time></div>
+          <div class="b out" style="animation-delay:5.2s">Listo, ya quedó apartada. Me pasa su nombre completo y la dirección para el envío, por favor.<time>11:44 p.m.</time></div>
+        </div>
+        <div class="compose">
+          <span class="plus">+</span>
+          <span class="field"></span>
+          <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="3"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8.5 6 10 3.5h4L15.5 6"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>
+        </div>
+        <div class="home"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problema">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Le escriben. Pero casi nadie termina comprando.</h2>
+      <p>Así suena el problema en una tienda de ropa que vende por WhatsApp.</p>
+    </div>
+    <div class="bubbles">
+      <p class="q">“Me escriben un montón, pero casi nadie termina comprando.”</p>
+      <p class="q">“Estoy atendiendo o empacando pedidos, contesto tarde y el cliente ya se enfrió.”</p>
+      <p class="q">“Pago anuncios todas las semanas y no sé cuántas ventas me están dejando.”</p>
+    </div>
+    <p class="verdict">El problema no es conseguir clientes. Es <strong>cerrar los que ya le escriben</strong>. Cada chat sin respuesta es pauta pagada que se pierde.</p>
+  </div>
+</section>
+
+<section class="fit">
+  <div class="wrap fit-grid">
+    <h2>Es para usted si su venta pasa por el chat.</h2>
+    <div>
+      <ul class="ticks">
+        <li>Tiene una tienda de ropa en Costa Rica, con o sin local físico.</li>
+        <li>Vende por WhatsApp e Instagram y le llegan más chats de los que alcanza a contestar bien.</li>
+        <li>Ya invierte en anuncios de Facebook o Instagram que llevan a WhatsApp.</li>
+        <li>Quiere vender más sin contratar a otra persona solo para contestar.</li>
+      </ul>
+      <p class="not">No es para usted si busca un bot de menús con botones. El asistente habla como una persona de su tienda: español tico, de usted y con mensajes cortos.</p>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Precios claros, sin letra pequeña.</h2>
+      <p>Una implementación y una mensualidad con todo incluido: plataforma, inteligencia artificial y mensajes de WhatsApp.</p>
+    </div>
+    <div class="menu">
+      <div class="item">
+        <h3>Diagnóstico de chats</h3>
+        <p>Reviso 50 conversaciones recientes de su tienda y le muestro dónde se pierden las ventas: tiempo de respuesta, preguntas sin contestar y falta de seguimiento.</p>
+        <div class="price">Incluido<small>en la implementación</small></div>
+      </div>
+      <div class="item main">
+        <h3>Vendedor de WhatsApp con IA</h3>
+        <p>Entrenado con su catálogo, precios, tallas, envíos por Correos, SINPE y tarjeta. Pregunta talla y color, pide los datos de envío, manda los datos de pago y le pasa a usted los casos delicados.</p>
+        <div class="price">₡75,000<small>implementación, pago único</small></div>
+      </div>
+      <div class="item">
+        <h3>Acompañamiento mensual</h3>
+        <p>Seguimiento automático a quien preguntó y no compró, ajustes al asistente y un reporte cada semana de chats recibidos contra ventas cerradas.</p>
+        <div class="price">₡55,000<small>al mes, todo incluido</small></div>
+      </div>
+    </div>
+    <p class="bonus">Las primeras 3 tiendas reciben el primer mes de acompañamiento incluido, a cambio de un testimonio.</p>
+  </div>
+</section>
+
+<section class="method">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Funcionando en 7 a 10 días.</h2>
+      <p>Usted sigue atendiendo su tienda. Yo me encargo de lo técnico.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Diagnóstico</h3><p>Revisamos sus chats y encontramos dónde se pierde la venta.</p><span class="when">Días 1 y 2</span></li>
+      <li><h3>Implementación</h3><p>Entreno al asistente con su tienda y configuro el guion de cierre y el seguimiento.</p><span class="when">Días 3 al 8</span></li>
+      <li><h3>Entrega y medición</h3><p>Capacito a su equipo y ajusto durante 30 días, con un reporte cada semana.</p><span class="when">Del día 9 en adelante</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="pilot">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Primero lo pruebo en mi propia tienda.</h2>
+      <p>Tengo una marca de ropa que vende por WhatsApp e Instagram. Lo implemento y lo mido ahí durante 30 días antes de ofrecerlo a otra tienda. Estos números se publican cuando termine el piloto.</p>
+    </div>
+    <div class="meters">
+      <div class="meter"><div class="v" aria-hidden="true">—</div><b>Tiempo de respuesta</b><span>Cuánto espera un cliente por la primera respuesta.</span></div>
+      <div class="meter"><div class="v" aria-hidden="true">—</div><b>Chats que terminan en venta</b><span>Qué porcentaje de las conversaciones se cierra.</span></div>
+      <div class="meter"><div class="v" aria-hidden="true">—</div><b>Horas recuperadas</b><span>Tiempo por semana que el dueño deja de contestar lo mismo.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="badge"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49" fill="#0D1B2A"/><circle cx="50" cy="50" r="48.4" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1"/><circle cx="50" cy="50" r="44.6" fill="none" stroke="rgba(255,255,255,.22)" stroke-width=".5"/><g font-family="Cormorant Garamond, Georgia, serif" font-weight="500"><text x="18" y="75" font-size="84" fill="none" stroke="#fff" stroke-width="0.9">C</text><text x="45" y="65" font-size="44" fill="#fff" font-weight="600">S</text></g></svg></div>
+      <h2>Carlos Salas González</h2>
+    </div>
+    <ul class="facts">
+      <li>Tengo mi propia marca de ropa<span>Con tienda física y venta por WhatsApp e Instagram. El problema que resuelvo lo vivo todos los días.</span></li>
+      <li>Closer de ventas<span>Sé llevar una conversación hasta el cierre, y así está pensado el asistente.</span></li>
+      <li>Fotógrafo y productor audiovisual<span>Conozco el contenido que hace que alguien le escriba a una tienda.</span></li>
+      <li>Administración, logística y aduanas<span>Técnico en Administración, Logística y Distribución, y bachiller en Administración Aduanera.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contacto" class="cta">
+  <div class="wrap">
+    <h2>¿Cuántas ventas se le quedan en el chat?</h2>
+    <p>Agendemos una llamada de 20 minutos. Revisamos juntos sus chats y le digo con claridad si esto le sirve o no.</p>
+    <a class="btn wa" href="#contacto">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.2 13.2 0 0 1-5-4.5c-.4-.5-1-1.5-1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1 .9 1.9 1.2 2.2 1.3.3.2.5.1.6 0l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>
+      Escribirme por WhatsApp
+    </a>
+    <p class="direct">O al +506 7193 2762</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Carlos Salas González, Costa Rica</span>
+    <span>Vendedor de WhatsApp con IA para tiendas de ropa</span>
+  </div>
+</footer>
+
+<script>
+  // Número de WhatsApp de contacto (formato internacional, sin + ni espacios)
+  const WHATSAPP = "50671932762";
+  const MSG = "Hola Carlos, vi su página y quiero revisar los chats de mi tienda.";
+  const url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(MSG);
+  document.querySelectorAll("a.wa").forEach(a => { a.href = url; a.target = "_blank"; a.rel = "noopener"; });
+</script>
+</body>
+</html>
